@@ -1,0 +1,34 @@
+name: Python CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Cloner le dépôt
+      uses: actions/checkout@v3
+
+    - name: 🐍 Installer Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: 🧪 Installer les dépendances
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: ✅ Lancer les tests avec couverture
+      run: |
+        pytest --cov=app tests/
+
+    - name: 📊 Générer le rapport de couverture
+      run: |
+        pytest --cov=app --cov-report=term-missing tests/
+git add .
