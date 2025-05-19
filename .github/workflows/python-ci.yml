@@ -31,4 +31,3 @@ jobs:
     - name: 📊 Générer le rapport de couverture
       run: |
         pytest --cov=app --cov-report=term-missing tests/
-git add .
