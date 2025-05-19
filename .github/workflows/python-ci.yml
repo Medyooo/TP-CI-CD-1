@@ -26,8 +26,8 @@ jobs:
 
     - name: ✅ Lancer les tests avec couverture
       run: |
-        pytest --cov=app tests/
+          PYTHONPATH=. pytest --cov=app tests/
 
     - name: 📊 Générer le rapport de couverture
       run: |
-        pytest --cov=app --cov-report=term-missing tests/
+          PYTHONPATH=. pytest --cov=app --cov-report=term-missing tests/
